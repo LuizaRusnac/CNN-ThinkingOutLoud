@@ -1,0 +1,42 @@
+import numpy as np
+from FileUtils import load_data
+import preprocessing
+import featureExtr
+
+# Establishing parameters
+window = 250
+domain = 'frequency'
+band_samples = 0
+
+names = ['xtrain_rawdata_%ds_50tr-50tst_kfold'%(window),
+    'ytrain_rawdata_%ds_50tr-50tst_kfold'%(window),
+	'xval_rawdata_%ds_50tr-50tst_kfold'%(window),
+	'yval_rawdata_%ds_50tr-50tst_kfold'%(window),
+    'xtest_rawdata_%ds_50tr-50tst_kfold'%(window),
+    'ytest_rawdata_%ds_50tr-50tst_kfold'%(window)]
+
+print("Loading data...")
+x, y = load_data("KaraOne_EEGSpeech_X.npy","KaraOne_EEGSpeech_y.npy")
+print("Loaded complete!")
+print("Data shape: ", x.shape)
+print(x.shape)
+
+print("Splitting data in %d samples window..."%window)
+x, y = preprocessing.spWin(x, window, y)
+print("Split completed!")
+print("Data shape after splitting: ", x.shape)
+
+print("Splitting in train-validation-test sets...")
+xtrain, ytrain, xval, yval, xtest, ytest = preprocessing.splitWinData(x, y, 16)
+print("Split completed!")
+
+print("Saving split data...")
+np.save(names[0], xtrain)
+np.save(names[1], ytrain)
+np.save(names[2], xval)
+np.save(names[3], yval)
+np.save(names[4], xtest)
+np.save(names[5], ytest)
+print("Saved data!")
+
+
