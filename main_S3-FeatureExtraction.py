@@ -9,12 +9,12 @@ domain = 'frequency'
 band_samples = 0
 
 print("Loading data...")
-names = ['xtrain_rawdata_%ds_50tr-50tst_kfold_lstm.npy'%(window),
-    'ytrain_rawdata_%ds_50tr-50tst_kfold_lstm.npy'%(window),
-	'xval_rawdata_%ds_50tr-50tst_kfold_lstm.npy'%(window),
-	'yval_rawdata_%ds_50tr-50tst_kfold_lstm.npy'%(window),
-    'xtest_rawdata_%ds_50tr-50tst_kfold_lstm.npy'%(window),
-    'ytest_rawdata_%ds_50tr-50tst_kfold_lstm.npy'%(window)]
+names = ['xtrain_rawdata_%ds_50tr-50tst_kfold.npy'%(window),
+    'ytrain_rawdata_%ds_50tr-50tst_kfold.npy'%(window),
+	'xval_rawdata_%ds_50tr-50tst_kfold.npy'%(window),
+	'yval_rawdata_%ds_50tr-50tst_kfold.npy'%(window),
+    'xtest_rawdata_%ds_50tr-50tst_kfold.npy'%(window),
+    'ytest_rawdata_%ds_50tr-50tst_kfold.npy'%(window)]
 
 xtrain, ytrain = load_data(names[0], names[1])
 xval, yval = load_data(names[2], names[3])
@@ -80,12 +80,12 @@ print("Normalized xtest features:")
 print(xtest)
 
 print("Saving features...")
-names = ['xtrain_%ds_50tr-50tst_cov-%s_B%d_mean_kfold_final'%(window, domain, band_samples),
-    'ytrain_%ds_50tr-50tst_cov-%s_B%d_mean_kfold_final'%(window, domain, band_samples),
-	'xval_%ds_50tr-50tst_cov-%s_B%d_mean_kfold_final'%(window, domain, band_samples),
-	'yval_%ds_50tr-50tst_cov-%s_B%d_mean_kfold_final'%(window, domain, band_samples),
-    'xtest_%ds_50tr-50tst_cov-%s_B%d_mean_kfold_final'%(window, domain, band_samples),
-    'ytest_%ds_50tr-50tst_cov-%s_B%d_mean_kfold_final'%(window, domain, band_samples)]
+names = ['xtrain_%ds_50tr-50tst_cov-%s_B%d_mean_kfold'%(window, domain, band_samples),
+    'ytrain_%ds_50tr-50tst_cov-%s_B%d_mean_kfold'%(window, domain, band_samples),
+	'xval_%ds_50tr-50tst_cov-%s_B%d_mean_kfold'%(window, domain, band_samples),
+	'yval_%ds_50tr-50tst_cov-%s_B%d_mean_kfold'%(window, domain, band_samples),
+    'xtest_%ds_50tr-50tst_cov-%s_B%d_mean_kfold'%(window, domain, band_samples),
+    'ytest_%ds_50tr-50tst_cov-%s_B%d_mean_kfold'%(window, domain, band_samples)]
 np.save(names[0], xtrain)
 np.save(names[1], ytrain)
 np.save(names[2], xval)
